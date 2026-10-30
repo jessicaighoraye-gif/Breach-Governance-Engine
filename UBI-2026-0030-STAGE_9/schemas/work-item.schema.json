@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "work-item.schema.json",
+  "title": "work item",
+  "description": "One entry in the generated work-items.json output. Every work item must trace to the rule and evidence that produced it, per brief.md's requirement to emit 'work items with source row and rule IDs' and the FAQ's live-defense trace path (source row -> schema -> population decision -> rule ID -> clock -> deadline -> notice/work item).",
+  "type": "object",
+  "required": [
+    "work_item_id", "obligation_id", "jurisdiction", "action",
+    "due_utc", "owner", "source_row_ids", "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "work_item_id": { "type": "string", "pattern": "^WI-[0-9]+$" },
+    "obligation_id": {
+      "type": "string",
+      "pattern": "^DL-[0-9]+$",
+      "description": "Links back to jurisdiction-rule.schema.json / deadline-ledger-entry.schema.json's rule_id."
+    },
+    "jurisdiction": { "type": "string", "enum": ["EU", "Nigeria", "California"] },
+    "action": { "type": "string", "minLength": 1 },
+    "due_utc": { "type": "string", "format": "date-time" },
+    "owner": { "type": "string", "minLength": 1 },
+    "depends_on_work_item_id": {
+      "type": ["string", "null"],
+      "pattern": "^WI-[0-9]+$",
+      "description": "Set when this item cannot start until another completes, e.g. the AG-sample work item depends on the consumer-notice work item."
+    },
+    "source_row_ids": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^DI-[0-9]+$" },
+      "description": "datainventory.csv rows that justify this item existing - the raw-evidence end of the live-defense trace."
+    },
+    "status": { "type": "string", "enum": ["pending", "in_progress", "complete"] }
+  }
+}

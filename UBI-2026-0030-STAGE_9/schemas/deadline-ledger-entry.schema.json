@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "deadline-ledger-entry.schema.json",
+  "title": "deadline ledger entry",
+  "description": "One row of the generated deadline-ledger.csv output, mirroring deadlineledger.csv's exact columns. The supplied template has all five obligation_id rows pre-listed with time/deadline columns blank ('draft' status) - this schema describes what a row looks like once the engine fills it in for a specific case.",
+  "type": "object",
+  "required": [
+    "obligation_id", "jurisdiction", "authority", "role",
+    "trigger_test", "triggered_yes_no", "clock_rule", "owner", "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "obligation_id": { "type": "string", "pattern": "^DL-[0-9]+$" },
+    "jurisdiction": { "type": "string", "enum": ["EU", "Nigeria", "California"] },
+    "authority": { "type": "string", "minLength": 1 },
+    "role": { "type": "string", "enum": ["controller", "processor", "business"] },
+    "trigger_test": {
+      "type": "string",
+      "description": "Human-readable summary of the condition tested, e.g. 'california_unique > 500'."
+    },
+    "triggered_yes_no": { "type": "boolean" },
+    "awareness_time_local": { "type": ["string", "null"], "format": "date-time" },
+    "awareness_time_utc": { "type": ["string", "null"], "format": "date-time" },
+    "clock_rule": { "type": "string", "minLength": 1 },
+    "calculated_deadline_local": { "type": ["string", "null"], "format": "date-time" },
+    "calculated_deadline_utc": { "type": ["string", "null"], "format": "date-time" },
+    "recipient": { "type": ["string", "null"] },
+    "owner": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["draft", "final", "not_applicable"] },
+    "assumptions_or_exception": { "type": ["string", "null"] }
+  },
+  "if": {
+    "properties": { "triggered_yes_no": { "const": true } }
+  },
+  "then": {
+    "required": [
+      "awareness_time_local", "awareness_time_utc",
+      "calculated_deadline_local", "calculated_deadline_utc", "recipient"
+    ]
+  }
+}

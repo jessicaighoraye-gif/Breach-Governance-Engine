@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "case-input.schema.json",
+  "title": "case input",
+  "description": "Input structure for a breach case fixture, matching public-fixtures.json 'input' fields exactly.",
+  "type": "object",
+  "required": ["awareness_utc", "california_unique", "encryption_key_acquired", "eu_unique", "nigeria_unique"],
+  "additionalProperties": false,
+  "properties": {
+    "awareness_utc": { "type": "string", "format": "date-time" },
+    "california_unique": { "type": "integer", "minimum": 0 },
+    "encryption_key_acquired": { "type": "boolean" },
+    "eu_unique": { "type": "integer", "minimum": 0 },
+    "nigeria_unique": { "type": "integer", "minimum": 0 }
+  }
+}

@@ -1,0 +1,6 @@
+obligation_id,jurisdiction,authority,role,trigger_test,triggered_yes_no,awareness_time_local,awareness_time_utc,clock_rule,calculated_deadline_local,calculated_deadline_utc,recipient,owner,status,assumptions_or_exception
+DL-001,EU,GDPR Article 33,controller,,,,,72 hours where feasible,,,,DPO,draft,
+DL-002,EU,GDPR Article 34,controller,,,,,without undue delay,,,,DPO,draft,
+DL-003,Nigeria,NDP Act 2023 section 40,controller,,,,,72 hours when threshold met,,,,DPO,draft,
+DL-004,California,California Civil Code section 1798.82,business,,,,,30 calendar days subject to statutory delay,,,,General Counsel,draft,
+DL-005,California,California Civil Code section 1798.82(f),business,,,,,sample notice within 15 calendar days after notifying consumers when more than 500 residents are notified,,,,General Counsel,draft,

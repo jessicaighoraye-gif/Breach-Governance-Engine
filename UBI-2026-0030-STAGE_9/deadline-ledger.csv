@@ -1,0 +1,16 @@
+obligation_id,jurisdiction,authority,role,trigger_test,triggered_yes_no,awareness_time_local,awareness_time_utc,clock_rule,calculated_deadline_local,calculated_deadline_utc,recipient,owner,status,assumptions_or_exception,
+DL-001,EU,GDPR Article 33,controller,eu_unique > 0 ,TRUE,2026-07-13 08:35 WAT,2026-07-13T07:35:00Z,GDPR Article 33,2026-07-16 08:35 WAT,2026-07-16T07:35:00Z,Lead EU supervisory authority (exact authority not named in evidence-pack.md),DPO (dpo@example.invalid),final,"The 72-hour deadline is treated as a feasibility-qualified ceiling under GDPR Article 33, which requires notification without undue delay and, where feasible, within 72 hours.
+
+For D-014, the notification trigger remains independent of `encryption_key_acquired`. The `account_profile` dataset contains unencrypted email addresses and password hashes, which is enough to meet the threshold for regulator notification, even if the patient-support export itself remains protected.
+",
+DL-002,EU,GDPR Article 34,controller,high_risk_subset_present_eu == true AND encryption_key_acquired == true ,TRUE,,,GDPR Article 34,,,Affected high-risk EU data subjects,DPO (dpo@example.invalid),final,"There is no fixed deadline here. GDPR Article 34 requires notification to affected individuals without undue delay.
+
+For D-014, the notification trigger depends on `encryption_key_acquired`. The basis for treating the exposure as high risk, the `high_risk_subset` containing `diagnosis_category` and `id_suffix`, exists only in the encrypted `patient_support` dataset.
+",
+DL-003,Nigeria,Nigeria Data Protection Act 2023 section 40; current NDPC guidance,controller,nigeria_unique > 0 ,TRUE,2026-07-13 08:35 WAT,2026-07-13T07:35:00Z,Nigeria Data Protection Act 2023 section 40,2026-07-16 08:35 WAT,2026-07-16T07:35:00Z,Nigeria Data Protection Commission (NDPC),DPO (dpo@example.invalid),final,"The 72-hour deadline applies as a fixed ceiling under NDPA Section 40. The “where feasible” qualification in the brief applies only to GDPR Article 33.
+
+For D-014, the trigger remains independent of encryption_key_acquired, following the same reasoning as DL-001.",
+DL-004,California,"California Civil Code Section 1798.82(a), as amended by SB 446",business,"california_unique > 0 AND categories_present intersects [email_password_combo, medical_information] ",TRUE,2026-07-13 08:35 WAT,2026-07-13T07:35:00Z,"California Civil Code Section 1798.82(a), as amended by SB 446",2026-08-12 08:35 WAT,2026-08-12T07:35:00Z,Affected California residents,Incident Commander / Legal,final,"The trigger is category-based under D-009, resolved using the SB 446 text and the California facts in the evidence pack. It is not dependent on crossing a population threshold.",
+DL-005,California,"California Civil Code Section 1798.82(f), as amended by SB 446",business,triggered AND california_unique > 500,TRUE,2026-08-12 08:35 WAT,2026-08-12T07:35:00Z,"California Civil Code Section 1798.82(f), as amended by SB 446",2026-08-27 08:35 WAT,2026-08-27T07:35:00Z,California Attorney General,Incident Commander / Legal,final,"No law-enforcement delay was requested under D-010, so the 30-day clock runs without modification.The obligation also remains independent of encryption_key_acquired because the exposed email and password_hash fields are explicitly unencrypted.",
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,

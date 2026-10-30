@@ -1,0 +1,8 @@
+{
+  "categories_present": ["email_password_combo", "medical_information"],
+  "government_id_present": false,
+  "payment_card_present": false,
+  "high_risk_subset_present_eu": true,
+  "high_risk_subset_present_nigeria": true,
+  "source": "evidence-pack.md 'Incident facts' (lines 24-29) and 'California facts' (lines 40-44). NOT part of the six-field fixture interface - brief.md states hidden fixtures vary awareness time, encryption-key status, overlap groups, and California count only, not data categories."
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "project_id": "GRC-A5",
+  "variant": "[V4",
+  "candidate_binding": "[UBI-2026-0030]",
+  "assigned_pack": {
+    "file_name": "[grc-stage-9-shared-b1.tar.gz]",
+    "sha256": "[1aba047e715886721bb377fa059c76fa4b554da4eb8c784f7b61b02520b8b9a6]",
+    "manifest_signature": "[df72f8ae20675755b424a3d9fd11455de59d2b4ae9bfba41fd5bf28821ab6cea]",
+    "verified_before_use": false
+  },
+  "commit": "[FILL IN - 40-character frozen git commit hash after your first clean commit]",
+  "supported_environment": {
+    "os": "Ubuntu 24.04.4 LTS",
+    "cpu": "",
+    "memory_gb": 8,
+    "tool_versions": {
+      "python": "3.12.3",
+      "pytest": "9.1.1"
+    
+    }
+  },
+  "commands": {
+    "provision": "python3 -m venv .venv && source .venv/bin/activate && pip install pytest --break-system-packages",
+    "build": "python3 run_real_case.py",
+    "test": "python3 -m pytest tests/ -v",
+    "clean": "rm -rf .venv __pycache__ breach-engine/__pycache__ tests/__pycache__ .pytest_cache generated deadline-ledger.csv work-items.json population-calculation.csv variant-snapshots regulator-notifications subject-notice.md "
+  },
+  "results": {
+    "public_tests": {
+      "passed": 18,
+      "failed": 0,
+      "report": "tests/ (pytest -v console output; no separate XML report generated)"
+    },
+    "runtime_seconds": 0.26,
+    "peak_memory_mb": null,
+    "output_hashes": {
+      "work-items.json": "e780f027b6a6d5a7e2c62daf0af65e3707fa4e977c9058e2727d16b6c5d103cc"
+    }
+  },
+  "inputs": [
+    "input/datainventory.csv",
+    "input/public-fixtures.json",
+    "input/incident-facts.json",
+    "input/ownership-config.json",
+    "rules/DL-001-gdpr-art33.json",
+    "rules/DL-002-gdpr-art34.json",
+    "rules/DL-003-ndpa-s40.json",
+    "rules/DL-004-ca-1798-82.json",
+    "rules/DL-005-ca-1798-82f.json"
+  ],
+  "outputs": [
+
+    "work-items.json",
+    "variant-snapshots/V1.json",
+    "variant-snapshots/V2.json",
+    "variant-snapshots/V3.json",
+    "variant-snapshots/V4.json",
+    "variant-snapshots/V5.json",
+    "variant-snapshots/V6.json",
+    "variant-snapshots/REAL-CASE.json",
+    "regulator-notifications/gdpr-article-33-notice.md",
+    "regulator-notifications/ndpa-section-40-notice.md",
+    "regulator-notifications/california-ag-sample-notice.md",
+    "subject-notice.md"
+  ],
+  "manual_preconditions": [
+    "None beyond the provision command - all inputs are local files"
+  ],
+  "known_limitations": [
+   "None"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "expected-output.schema.json",
+  "title": "expected output",
+  "description": "Fixture-assertion structure matching public-fixtures.json 'expected' fields. OPEN ASSUMPTION (see decision log D-002): no public fixture shows an untriggered case, so gdpr/ndpa/california deadline fields are modeled as nullable rather than always-required, pending hidden-fixture confirmation. Do not treat this file as proof of untriggered behavior.",
+  "type": "object",
+  "required": ["california_ag_sample_required"],
+  "additionalProperties": false,
+  "properties": {
+    "california_ag_sample_required": { "type": "boolean" },
+    "california_ag_deadline_basis": { "type": ["string", "null"] },
+    "california_consumer_deadline_utc": { "type": ["string", "null"], "format": "date-time" },
+    "gdpr_article_33_deadline_utc": { "type": ["string", "null"], "format": "date-time" },
+    "ndpa_section_40_deadline_utc": { "type": ["string", "null"], "format": "date-time" }
+  },
+  "if": {
+    "properties": { "california_ag_sample_required": { "const": true } }
+  },
+  "then": {
+    "required": ["california_ag_deadline_basis", "california_consumer_deadline_utc"]
+  }
+}

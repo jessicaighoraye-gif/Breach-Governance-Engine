@@ -1,0 +1,21 @@
+{
+  "rule_id": "DL-005",
+  "jurisdiction": "California",
+  "authority": "California Civil Code Section 1798.82(f), as amended by SB 446",
+  "role": "business",
+  "trigger_condition": {
+    "trigger_type": "dependent_threshold",
+    "requires_rule_id_triggered": "DL-004",
+    "population_field": "california_unique",
+    "threshold_operator": ">",
+    "threshold_value": 500
+  },
+  "clock_basis": "consumer_notice_utc",
+  "depends_on_rule_id": "DL-004",
+  "duration_value": 15,
+  "duration_unit": "calendar_days",
+  "feasibility_qualifier": false,
+  "delay_conditions": [],
+  "citation": "California Civil Code Section 1798.82(f), as amended by SB 446",
+  "note": "D-006: no V1-V6 fixture checks the actual computed AG deadline date, only california_ag_sample_required and california_ag_deadline_basis. This rule's date output is unverified against any fixture."
+}

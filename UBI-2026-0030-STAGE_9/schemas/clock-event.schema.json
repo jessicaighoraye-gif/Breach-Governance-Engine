@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "clock-event.schema.json",
+  "title": "clock event",
+  "description": "One timestamped event from the incident timeline. Formalizes the seven distinct clocks the brief requires kept separate (occurrence, detection, awareness/confirmation, processor detection, processor notice, plus internal escalation and containment) so no two get silently merged.",
+  "type": "object",
+  "required": ["clock_type", "event", "utc_time", "wat_time", "source_locator"],
+  "additionalProperties": false,
+  "properties": {
+    "clock_type": {
+      "type": "string",
+      "enum": [
+        "occurrence", "detection", "awareness", "internal_escalation",
+        "containment", "processor_detection", "processor_notice"
+      ]
+    },
+    "event": { "type": "string", "minLength": 1 },
+    "utc_time": { "type": "string", "format": "date-time" },
+    "wat_time": { "type": "string", "format": "date-time" },
+    "source_locator": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Exact file and line reference, e.g. 'evidence-pack.md lines 18-19'."
+    }
+  }
+}

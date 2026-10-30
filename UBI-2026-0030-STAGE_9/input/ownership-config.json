@@ -1,0 +1,6 @@
+{
+  "DL-002": { "owner": "DPO (dpo@example.invalid)", "recipient": "Affected high-risk EU data subjects" },
+  "DL-003": { "owner": "DPO (dpo@example.invalid)", "recipient": "Nigeria Data Protection Commission (NDPC)" },
+  "DL-004": { "owner": "Incident Commander / Legal", "recipient": "Affected California residents" },
+  "DL-005": { "owner": "Incident Commander / Legal", "recipient": "California Attorney General" }
+}

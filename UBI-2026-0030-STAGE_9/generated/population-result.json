@@ -1,0 +1,59 @@
+{
+  "jurisdictions": {
+    "EU": {
+      "jurisdiction": "EU",
+      "confirmed_unique": 620,
+      "lower_bound_unique": 620,
+      "upper_bound_unique": 705,
+      "high_risk_subset_confirmed": 214,
+      "high_risk_source_rows": [
+        "DI-001"
+      ],
+      "included_rows": [
+        "DI-001",
+        "DI-002",
+        "DI-003"
+      ],
+      "excluded_rows": []
+    },
+    "Nigeria": {
+      "jurisdiction": "Nigeria",
+      "confirmed_unique": 1280,
+      "lower_bound_unique": 1280,
+      "upper_bound_unique": 1420,
+      "high_risk_subset_confirmed": 506,
+      "high_risk_source_rows": [
+        "DI-004"
+      ],
+      "included_rows": [
+        "DI-004",
+        "DI-005",
+        "DI-006"
+      ],
+      "excluded_rows": []
+    },
+    "California": {
+      "jurisdiction": "California",
+      "confirmed_unique": 530,
+      "lower_bound_unique": 530,
+      "upper_bound_unique": 530,
+      "high_risk_subset_confirmed": 301,
+      "high_risk_source_rows": [
+        "DI-007"
+      ],
+      "included_rows": [
+        "DI-007",
+        "DI-008"
+      ],
+      "excluded_rows": [
+        {
+          "row_id": "DI-009",
+          "reason": "confirmed_exfiltrated=no (network evidence excludes archive)"
+        }
+      ]
+    }
+  },
+  "other_us_rows": [
+    "DI-010"
+  ]
+}

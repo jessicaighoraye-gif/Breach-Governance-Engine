@@ -1,0 +1,11 @@
+row_id,jurisdiction,dataset,data_categories,unique_subjects,records,overlap_group,confirmed_exfiltrated,high_risk_subset,notes
+DI-001,EU,patient_support,email|mobile|case_text|diagnosis_category,620,1480,EU-A,yes,214,primary support export
+DI-002,EU,account_profile,email|mobile|password_hash,620,620,EU-A,yes,0,same people as EU-A support rows
+DI-003,EU,archived_cases,email|case_text,85,133,EU-B,uncertain,0,backup index reconciliation pending
+DI-004,Nigeria,patient_support,email|mobile|case_text|diagnosis_category|id_suffix,1280,3110,NG-A,yes,506,primary support export
+DI-005,Nigeria,account_profile,email|mobile|password_hash,1280,1280,NG-A,yes,0,same people as NG-A support rows
+DI-006,Nigeria,archived_cases,email|case_text|id_suffix,140,221,NG-B,uncertain,38,backup index reconciliation pending
+DI-007,California,patient_support,email|mobile|case_text|medical_information|id_suffix,530,1210,CA-A,yes,301,primary support export
+DI-008,California,account_profile,email|password_hash,530,530,CA-A,yes,0,same people as CA-A support rows
+DI-009,California,archived_cases,email|case_text,44,67,CA-B,no,0,network evidence excludes archive
+DI-010,Other US,patient_support,email|mobile|case_text,310,680,US-A,yes,0,outside this exercise's state-law analysis

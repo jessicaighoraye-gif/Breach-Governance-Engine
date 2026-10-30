@@ -1,0 +1,19 @@
+{
+  "rule_id": "DL-001",
+  "jurisdiction": "EU",
+  "authority": "GDPR Article 33",
+  "role": "controller",
+  "trigger_condition": {
+    "trigger_type": "population_nonzero",
+    "population_field": "eu_unique",
+    "requires_risk_flag": true,
+    "note": "D-014: GDPR Art.33's threshold is LOW - notify unless the breach is unlikely to result in risk. Even if encryption_key_acquired=false (patient_support/diagnosis data stays protected), the account_profile dataset (email+password_hash) is explicitly UNENCRYPTED per evidence-pack.md California facts and structurally identical across jurisdictions - unconditional credential exposure (phishing/credential-stuffing risk) is sufficient to clear this low bar on its own. Trigger therefore stays population>0, independent of encryption_key_acquired. Still a judgment call, not a certainty - flag in defense."
+  },
+  "clock_basis": "awareness_utc",
+  "depends_on_rule_id": null,
+  "duration_value": 72,
+  "duration_unit": "hours",
+  "feasibility_qualifier": true,
+  "delay_conditions": [],
+  "citation": "GDPR Article 33"
+}

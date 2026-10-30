@@ -1,0 +1,21 @@
+{
+  "rule_id": "DL-002",
+  "jurisdiction": "EU",
+  "authority": "GDPR Article 34",
+  "role": "controller",
+  "trigger_condition": {
+    "trigger_type": "high_risk_subset_nonzero",
+    "case_fact_field": "high_risk_subset_present_eu",
+    "requires_key_acquired": true,
+    "note": "D-014 RESOLVED (partial - still a judgment call, flag in defense): high_risk_subset is driven by diagnosis_category + id_suffix, both of which live only in the patient_support dataset (DI-001/DI-004/DI-007) - the same dataset evidence-pack.md's current assessment describes as the encrypted export requiring the application service credential. If encryption_key_acquired=false, that data is not actually readable to the attacker, so the high-risk basis does not hold and this obligation should not trigger. Does NOT affect DL-001 (see its own note) - Art.33's much lower bar is still cleared by the unconditionally-unencrypted account_profile dataset alone."
+  },
+  "clock_basis": "awareness_utc",
+  "depends_on_rule_id": null,
+  "duration_value": null,
+  "duration_unit": null,
+  "feasibility_qualifier": false,
+  "no_fixed_deadline": true,
+  "delay_conditions": [],
+  "citation": "GDPR Article 34",
+  "note": "No V1-V6 fixture validates this numerically - expected-output.schema.json has no field for it. Trigger decision only; 'without undue delay' has no fixed offset per brief.md."
+}

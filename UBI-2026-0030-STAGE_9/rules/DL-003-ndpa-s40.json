@@ -1,0 +1,20 @@
+{
+  "rule_id": "DL-003",
+  "jurisdiction": "Nigeria",
+  "authority": "Nigeria Data Protection Act 2023 section 40; current NDPC guidance",
+  "role": "controller",
+  "trigger_condition": {
+    "trigger_type": "population_nonzero",
+    "population_field": "nigeria_unique",
+    "requires_risk_flag": true,
+    "note": "D-014: same reasoning as DL-001 - account_profile (email+password_hash) is unencrypted and jurisdiction-agnostic, clears NDPA's risk threshold regardless of encryption_key_acquired."
+  },
+  "clock_basis": "awareness_utc",
+  "depends_on_rule_id": null,
+  "duration_value": 72,
+  "duration_unit": "hours",
+  "feasibility_qualifier": false,
+  "delay_conditions": [],
+  "citation": "Nigeria Data Protection Act 2023 section 40",
+  "note": "brief.md does NOT attach a 'where feasible' qualifier to Nigeria's 72-hour clock, unlike GDPR Art.33 - feasibility_qualifier is deliberately false here, not a copy-paste of DL-001."
+}

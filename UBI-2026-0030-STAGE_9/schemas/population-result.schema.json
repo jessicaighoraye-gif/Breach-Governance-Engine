@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "population-result.schema.json",
+  "title": "population result",
+  "description": "NOTE: no population-calculation.csv template was supplied in the case desk files, unlike deadline-ledger and evidence-index which do have templates. This schema is our own design, built to satisfy brief.md's requirement to 'maintain confirmed/lower/upper populations' and the FAQ's requirement to 'emit row-level inclusion or exclusion reasons' - it is not a confirmed staff format. One entry per in-scope jurisdiction (EU, Nigeria, California only - 'Other US' is excluded per dataset-row.schema.json).",
+  "type": "object",
+  "required": [
+    "jurisdiction", "confirmed_unique", "lower_bound_unique",
+    "upper_bound_unique", "included_rows", "excluded_rows"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "jurisdiction": { "type": "string", "enum": ["EU", "Nigeria", "California"] },
+    "confirmed_unique": {
+      "type": "integer", "minimum": 0,
+      "description": "Deduplicated count from confirmed_exfiltrated='yes' rows only, overlap_group collapsed once per jurisdiction."
+    },
+    "lower_bound_unique": {
+      "type": "integer", "minimum": 0,
+      "description": "Same as confirmed_unique in this model - the minimum defensible count, excluding all 'uncertain' rows."
+    },
+    "upper_bound_unique": {
+      "type": "integer", "minimum": 0,
+      "description": "confirmed_unique plus deduplicated 'uncertain' rows for this jurisdiction - the plausible upper range referenced in evidence-pack.md's board instruction."
+    },
+    "included_rows": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^DI-[0-9]+$" },
+      "description": "row_id values counted toward confirmed or upper bound."
+    },
+    "excluded_rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["row_id", "reason"],
+        "additionalProperties": false,
+        "properties": {
+          "row_id": { "type": "string", "pattern": "^DI-[0-9]+$" },
+          "reason": { "type": "string" }
+        }
+      },
+      "description": "e.g. {row_id: 'DI-009', reason: 'confirmed_exfiltrated=no, network evidence excludes archive'}."
+    }
+  }
+}

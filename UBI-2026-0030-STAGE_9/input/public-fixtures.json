@@ -1,0 +1,109 @@
+{
+  "fixtures": [
+    {
+      "case_id": "V1",
+      "expected": {
+        "california_ag_deadline_basis": "consumer_notice_plus_15_calendar_days",
+        "california_ag_sample_required": true,
+        "california_consumer_deadline_utc": "2026-08-12T07:35:00Z",
+        "gdpr_article_33_deadline_utc": "2026-07-16T07:35:00Z",
+        "ndpa_section_40_deadline_utc": "2026-07-16T07:35:00Z"
+      },
+      "input": {
+        "awareness_utc": "2026-07-13T07:35:00Z",
+        "california_unique": 530,
+        "encryption_key_acquired": true,
+        "eu_unique": 620,
+        "nigeria_unique": 1280
+      }
+    },
+    {
+      "case_id": "V2",
+      "expected": {
+        "california_ag_deadline_basis": "consumer_notice_plus_15_calendar_days",
+        "california_ag_sample_required": true,
+        "california_consumer_deadline_utc": "2026-08-12T08:05:00Z",
+        "gdpr_article_33_deadline_utc": "2026-07-16T08:05:00Z",
+        "ndpa_section_40_deadline_utc": "2026-07-16T08:05:00Z"
+      },
+      "input": {
+        "awareness_utc": "2026-07-13T08:05:00Z",
+        "california_unique": 542,
+        "encryption_key_acquired": true,
+        "eu_unique": 620,
+        "nigeria_unique": 1280
+      }
+    },
+    {
+      "case_id": "V3",
+      "expected": {
+        "california_ag_deadline_basis": "consumer_notice_plus_15_calendar_days",
+        "california_ag_sample_required": true,
+        "california_consumer_deadline_utc": "2026-08-12T08:35:00Z",
+        "gdpr_article_33_deadline_utc": "2026-07-16T08:35:00Z",
+        "ndpa_section_40_deadline_utc": "2026-07-16T08:35:00Z"
+      },
+      "input": {
+        "awareness_utc": "2026-07-13T08:35:00Z",
+        "california_unique": 554,
+        "encryption_key_acquired": true,
+        "eu_unique": 620,
+        "nigeria_unique": 1280
+      }
+    },
+    {
+      "case_id": "V4",
+      "expected": {
+        "california_ag_deadline_basis": "consumer_notice_plus_15_calendar_days",
+        "california_ag_sample_required": true,
+        "california_consumer_deadline_utc": "2026-08-12T09:05:00Z",
+        "gdpr_article_33_deadline_utc": "2026-07-16T09:05:00Z",
+        "ndpa_section_40_deadline_utc": "2026-07-16T09:05:00Z"
+      },
+      "input": {
+        "awareness_utc": "2026-07-13T09:05:00Z",
+        "california_unique": 566,
+        "encryption_key_acquired": true,
+        "eu_unique": 620,
+        "nigeria_unique": 1280
+      }
+    },
+    {
+      "case_id": "V5",
+      "expected": {
+        "california_ag_deadline_basis": "consumer_notice_plus_15_calendar_days",
+        "california_ag_sample_required": true,
+        "california_consumer_deadline_utc": "2026-08-12T09:35:00Z",
+        "gdpr_article_33_deadline_utc": "2026-07-16T09:35:00Z",
+        "ndpa_section_40_deadline_utc": "2026-07-16T09:35:00Z"
+      },
+      "input": {
+        "awareness_utc": "2026-07-13T09:35:00Z",
+        "california_unique": 578,
+        "encryption_key_acquired": true,
+        "eu_unique": 620,
+        "nigeria_unique": 1280
+      }
+    },
+    {
+      "case_id": "V6",
+      "expected": {
+        "california_ag_deadline_basis": "consumer_notice_plus_15_calendar_days",
+        "california_ag_sample_required": true,
+        "california_consumer_deadline_utc": "2026-08-12T10:05:00Z",
+        "gdpr_article_33_deadline_utc": "2026-07-16T10:05:00Z",
+        "ndpa_section_40_deadline_utc": "2026-07-16T10:05:00Z"
+      },
+      "input": {
+        "awareness_utc": "2026-07-13T10:05:00Z",
+        "california_unique": 590,
+        "encryption_key_acquired": true,
+        "eu_unique": 620,
+        "nigeria_unique": 1280
+      }
+    }
+  ],
+  "interface_version": "2026-07",
+  "project": "GRC-A5",
+  "schema_version": "1.0"
+}

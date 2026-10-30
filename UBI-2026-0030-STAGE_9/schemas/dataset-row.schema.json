@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dataset-row.schema.json",
+  "title": "dataset row",
+  "description": "One row of datainventory.csv as ingested by the population engine. confirmed_exfiltrated is a three-state field (yes/no/uncertain), not a boolean - 'uncertain' rows (e.g. DI-003, DI-006) are the ones pending backup-index reconciliation per evidence-pack.md's board instruction, and are the basis for the lower/upper population split. Jurisdiction 'Other US' is observed in the data (DI-010) but is explicitly out of scope for this project's state-law analysis per evidence-pack.md - it must still be represented (do not silently drop the row on ingest) but should not feed any of the three in-scope jurisdiction populations.",
+  "type": "object",
+  "required": [
+    "row_id", "jurisdiction", "dataset", "data_categories",
+    "unique_subjects", "records", "overlap_group",
+    "confirmed_exfiltrated", "high_risk_subset"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "row_id": { "type": "string", "pattern": "^DI-[0-9]+$" },
+    "jurisdiction": {
+      "type": "string",
+      "enum": ["EU", "Nigeria", "California", "Other US"],
+      "description": "Fixed set observed across all rows. 'Other US' rows are out of scope for jurisdiction population totals - see top-level description."
+    },
+    "dataset": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Observed values: patient_support, account_profile, archived_cases. Not enum-locked - hidden fixtures may introduce new dataset names, and the brief does not guarantee this list is exhaustive."
+    },
+    "data_categories": {
+      "type": "string",
+      "pattern": "^[a-z_]+(\\|[a-z_]+)*$",
+      "description": "Pipe-delimited category tags as stored in the raw CSV, e.g. 'email|mobile|password_hash'. Split on '|' at parse time; this schema validates the raw ingested string, not the parsed array."
+    },
+    "unique_subjects": { "type": "integer", "minimum": 0 },
+    "records": { "type": "integer", "minimum": 0 },
+    "overlap_group": {
+      "type": "string",
+      "pattern": "^[A-Za-z]{2,5}-[A-Z]$",
+      "description": "Groups people represented across more than one dataset within a jurisdiction, e.g. EU-A, NG-B, CA-A, US-A. Per evidence-pack.md: count each overlap_group once per jurisdiction, not once per row."
+    },
+    "confirmed_exfiltrated": {
+      "type": "string",
+      "enum": ["yes", "no", "uncertain"],
+      "description": "NOT boolean. 'no' (e.g. DI-009, 'network evidence excludes archive') means the row must be EXCLUDED from all population counts per brief.md's 'exclude network-disproved datasets' instruction. 'uncertain' rows count toward the upper bound only."
+    },
+    "high_risk_subset": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of subjects within this row meeting the Article 34 / high-risk criterion (diagnosis_category AND id_suffix both present, per evidence-pack.md). Engine-level constraint (not enforceable in JSON Schema alone): must be <= unique_subjects."
+    },
+    "notes": { "type": "string" }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "case-input.schema.json",
+  "title": "case input",
+  "description": "expected output structure for a breach case fixture, matching public-fixtures.json 'expected' fields",
+  "type": "object",
+  "required": ["california_ag_deadline_basis", "california_ag_sample_required", "california_consumer_deadline_utc", "gdpr_article_33_deadline_utc", "ndpa_section_40_deadline_utc"],
+  "additionalProperties": false,
+
+  "properties": {
+    "california_ag_deadline_basis": { "type": "string", "minLength": 1 },
+    "california_ag_sample_required": { "type": "boolean" },
+    "california_consumer_deadline_utc": { "type": "string", "format": "date-time" },
+    "gdpr_article_33_deadline_utc": { "type": "string", "format": "date-time" },
+    "ndpa_section_40_deadline_utc": { "type": "string", "format": "date-time" }
+
+  }
+}

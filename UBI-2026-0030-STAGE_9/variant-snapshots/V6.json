@@ -1,0 +1,85 @@
+{
+  "case_id": "V6",
+  "input": {
+    "awareness_utc": "2026-07-13T10:05:00Z",
+    "california_unique": 590,
+    "encryption_key_acquired": true,
+    "eu_unique": 620,
+    "nigeria_unique": 1280
+  },
+  "expected_output_shape": {
+    "california_ag_sample_required": true,
+    "california_ag_deadline_basis": "consumer_notice_plus_15_calendar_days",
+    "california_consumer_deadline_utc": "2026-08-12T10:05:00Z",
+    "gdpr_article_33_deadline_utc": "2026-07-16T10:05:00Z",
+    "ndpa_section_40_deadline_utc": "2026-07-16T10:05:00Z"
+  },
+  "matches_public_fixture_expected": true,
+  "full_ledger": {
+    "DL-001": {
+      "obligation_id": "DL-001",
+      "jurisdiction": "EU",
+      "authority": "GDPR Article 33",
+      "role": "controller",
+      "triggered_yes_no": true,
+      "clock_rule": "GDPR Article 33",
+      "clock_basis": "awareness_utc",
+      "clock_start_utc": "2026-07-13T10:05:00Z",
+      "clock_start_local": "2026-07-13 11:05 WAT",
+      "calculated_deadline_utc": "2026-07-16T10:05:00Z",
+      "calculated_deadline_local": "2026-07-16 11:05 WAT"
+    },
+    "DL-002": {
+      "obligation_id": "DL-002",
+      "jurisdiction": "EU",
+      "authority": "GDPR Article 34",
+      "role": "controller",
+      "triggered_yes_no": true,
+      "clock_rule": "GDPR Article 34",
+      "clock_basis": "awareness_utc",
+      "clock_start_utc": null,
+      "clock_start_local": null,
+      "calculated_deadline_utc": null,
+      "calculated_deadline_local": null
+    },
+    "DL-003": {
+      "obligation_id": "DL-003",
+      "jurisdiction": "Nigeria",
+      "authority": "Nigeria Data Protection Act 2023 section 40; current NDPC guidance",
+      "role": "controller",
+      "triggered_yes_no": true,
+      "clock_rule": "Nigeria Data Protection Act 2023 section 40",
+      "clock_basis": "awareness_utc",
+      "clock_start_utc": "2026-07-13T10:05:00Z",
+      "clock_start_local": "2026-07-13 11:05 WAT",
+      "calculated_deadline_utc": "2026-07-16T10:05:00Z",
+      "calculated_deadline_local": "2026-07-16 11:05 WAT"
+    },
+    "DL-004": {
+      "obligation_id": "DL-004",
+      "jurisdiction": "California",
+      "authority": "California Civil Code Section 1798.82(a), as amended by SB 446",
+      "role": "business",
+      "triggered_yes_no": true,
+      "clock_rule": "California Civil Code Section 1798.82(a), as amended by SB 446",
+      "clock_basis": "awareness_utc",
+      "clock_start_utc": "2026-07-13T10:05:00Z",
+      "clock_start_local": "2026-07-13 11:05 WAT",
+      "calculated_deadline_utc": "2026-08-12T10:05:00Z",
+      "calculated_deadline_local": "2026-08-12 11:05 WAT"
+    },
+    "DL-005": {
+      "obligation_id": "DL-005",
+      "jurisdiction": "California",
+      "authority": "California Civil Code Section 1798.82(f), as amended by SB 446",
+      "role": "business",
+      "triggered_yes_no": true,
+      "clock_rule": "California Civil Code Section 1798.82(f), as amended by SB 446",
+      "clock_basis": "consumer_notice_utc",
+      "clock_start_utc": "2026-08-12T10:05:00Z",
+      "clock_start_local": "2026-08-12 11:05 WAT",
+      "calculated_deadline_utc": "2026-08-27T10:05:00Z",
+      "calculated_deadline_local": "2026-08-27 11:05 WAT"
+    }
+  }
+}

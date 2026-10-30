@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "jurisdiction-rule.schema.json",
+  "title": "jurisdiction rule",
+  "description": "Structure for the actual jurisdiction-law content that lives in rules/ (not schemas/). deadlineledger.csv's template already fixes five obligation rows (DL-001 to DL-005), one per authority/role pair from brief.md's Authority baseline - this schema is the machine-readable expansion of that same template's clock_rule text column into structured, engine-evaluable logic, so trigger/clock behavior lives in data, not in engine if/else branches.",
+  "type": "object",
+  "required": [
+    "rule_id", "jurisdiction", "authority", "role",
+    "trigger_condition", "clock_basis", "duration_value", "duration_unit", "citation"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "rule_id": {
+      "type": "string",
+      "pattern": "^DL-[0-9]+$",
+      "description": "Matches deadlineledger.csv obligation_id (DL-001 GDPR Art.33, DL-002 GDPR Art.34, DL-003 NDPA s.40, DL-004 Cal. 1798.82, DL-005 Cal. 1798.82(f) AG sample) so ledger entries trace back to the exact rule that produced them."
+    },
+    "jurisdiction": { "type": "string", "enum": ["EU", "Nigeria", "California"] },
+    "authority": { "type": "string", "minLength": 1 },
+    "role": { "type": "string", "enum": ["controller", "processor", "business"] },
+    "trigger_condition": {
+      "type": "object",
+      "description": "Machine-evaluable condition, not free text. Fields depend on rule: e.g. California AG-sample rule needs a population-count threshold; GDPR/NDPA need a risk-threshold flag.",
+      "properties": {
+        "population_field": { "type": "string" },
+        "threshold_operator": { "type": "string", "enum": [">", ">=", "<", "<=", "=="] },
+        "threshold_value": { "type": "number" },
+        "requires_risk_flag": { "type": "boolean" }
+      }
+    },
+    "clock_basis": {
+      "type": "string",
+      "enum": ["awareness_utc", "consumer_notice_utc", "processor_confirmation_utc"],
+      "description": "Which upstream timestamp starts this obligation's clock. DL-005 (AG sample) must reference 'consumer_notice_utc', not awareness - it is a dependent clock, not a fresh one from awareness."
+    },
+    "depends_on_rule_id": {
+      "type": ["string", "null"],
+      "pattern": "^DL-[0-9]+$",
+      "description": "Set for DL-005, which depends on DL-004's calculated consumer deadline. Null for rules with an independent clock."
+    },
+    "duration_value": { "type": "number", "minimum": 0 },
+    "duration_unit": { "type": "string", "enum": ["hours", "calendar_days"] },
+    "feasibility_qualifier": {
+      "type": "boolean",
+      "description": "True for GDPR Art.33's 'without undue delay and, where feasible, within 72 hours' - the 72-hour figure is a feasibility-qualified ceiling, not an absolute one."
+    },
+    "delay_conditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. California's permitted-delay conditions under SB 446. Empty array if none apply."
+    },
+    "citation": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Exact statutory citation as given in brief.md's Authority baseline, e.g. 'GDPR Article 33'."
+    }
+  }
+}

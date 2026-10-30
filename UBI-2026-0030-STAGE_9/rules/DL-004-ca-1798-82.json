@@ -1,0 +1,21 @@
+{
+  "rule_id": "DL-004",
+  "jurisdiction": "California",
+  "authority": "California Civil Code Section 1798.82(a), as amended by SB 446",
+  "role": "business",
+  "trigger_condition": {
+    "trigger_type": "population_and_category",
+    "population_field": "california_unique",
+    "category_source": "input/incident-facts.json:categories_present",
+    "qualifying_categories": ["email_password_combo", "medical_information"],
+    "note": "D-009 resolved: per SB 446 statute text (external, verified via search) plus evidence-pack.md California facts, the email+password_hash combo is stated as UNENCRYPTED and triggers independently of encryption_key_acquired. Not population-threshold-gated - that gate applies only to DL-005."
+  },
+  "clock_basis": "awareness_utc",
+  "depends_on_rule_id": null,
+  "duration_value": 30,
+  "duration_unit": "calendar_days",
+  "feasibility_qualifier": false,
+  "delay_conditions": ["law_enforcement_request_documented"],
+  "citation": "California Civil Code Section 1798.82(a), as amended by SB 446",
+  "note": "D-010 resolved: evidence-pack.md states 'No law-enforcement delay has been requested' - this case has no active delay condition, though the branch remains for generality."
+}
